@@ -1,0 +1,29 @@
+ISim log file
+Running: ./simple_tx_tb.exe -gui -tclbatch ../simple_tx_tb.tcl 
+ISim O.87xd (signature 0x8ddf5b5d)
+----------------------------------------------------------------------
+WARNING:Security:42 - Your software subscription period has lapsed. Your current version of Xilinx tools will continue to function, but you no longer qualify for Xilinx software updates or new releases.
+
+
+----------------------------------------------------------------------
+This is a Full version of ISim.
+Time resolution is 1 ps
+# run 2 us
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# if [test dut/tx_count(31:0)  00000003 -radix hex] &
+    [test dut/rx_count(31:0)  00000003 -radix hex] &
+    [test dut/err_count(31:0) 00000000 -radix hex] 
+  puts "Test Passed"
+
+ else 
+  puts "Test Failed"
+
+# test dut/tx_count(31:0) 00000003 -radix hex
+HDL object dut/tx_count(31:0) has same value as 00000003
+# test dut/rx_count(31:0) 00000003 -radix hex
+HDL object dut/rx_count(31:0) has same value as 00000003
+# test dut/err_count(31:0) 00000000 -radix hex
+HDL object dut/err_count(31:0) has same value as 00000000
+# quit
+# exit 0
