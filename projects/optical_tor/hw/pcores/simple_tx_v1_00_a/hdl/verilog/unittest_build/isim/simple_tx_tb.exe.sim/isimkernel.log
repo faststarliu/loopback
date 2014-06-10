@@ -1,0 +1,28 @@
+Command line:
+   simple_tx_tb.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  51829
+
+Mon Jun  9 18:23:07 2014
+
+
+ Elaboration Time: 0.03 sec
+
+ Current Memory Usage: 185.532 Meg
+
+ Total Signals          : 195
+ Total Nets             : 1454
+ Total Signal Drivers   : 102
+ Total Blocks           : 23
+ Total Primitive Blocks : 14
+ Total Processes        : 106
+ Total Traceable Variables  : 197
+ Total Scalar Nets and Variables : 41545
+
+ Total Simulation Time: 0.12 sec
+
+ Current Memory Usage: 254.743 Meg
+
+Mon Jun  9 18:24:17 2014
+
