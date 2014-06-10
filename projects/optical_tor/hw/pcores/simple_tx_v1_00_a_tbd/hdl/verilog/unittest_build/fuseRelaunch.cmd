@@ -1,1 +1,0 @@
--incremental -prj "../simple_tx_tb.prj" -o "simple_tx_tb.exe" "work.testbench" 
