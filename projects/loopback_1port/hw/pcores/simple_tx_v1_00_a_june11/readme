@@ -1,0 +1,5 @@
+added reset
+able to read and write to registers
+but there is no feedback from the module
+
+so now planning to remove the logic completely and planning to write fsm to generate mac control frames

@@ -1,0 +1,34 @@
+------------------------------------------------------------------------
+--
+--  NETFPGA-10G www.netfpga.org
+--
+--  Module:
+--          nf10_gen_check_tb.prj
+--
+--  Description:
+--          Mark Grindell- project file to list the files necessary for the 
+--                         nf10_gen_check_tb module
+--
+--
+--  Revision history:
+--          13/07/2011 Mark Grindell First Edition
+--
+--  Known issues:
+--          None
+--          
+--
+--  Library: library dependencies
+--
+------------------------------------------------------------------------
+verilog work "simple_tx_tb.v"
+verilog work "simple_tx.v"
+verilog work "../../../../../../../lib/hw/std/pcores/nf10_proc_common_v1_00_a/hdl/verilog/ipif_regs.v"
+vhdl work "../../../../../../../lib/hw/std/pcores/nf10_proc_common_v1_00_a/hdl/vhdl/axi_lite_ipif_1bar.vhd"
+vhdl proc_common_v3_00_a "../../../../../../../lib/hw/xilinx/pcores/proc_common_v3_00_a/hdl/vhdl/proc_common_pkg.vhd"
+vhdl proc_common_v3_00_a "../../../../../../../lib/hw/xilinx/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd"
+vhdl proc_common_v3_00_a "../../../../../../../lib/hw/xilinx/pcores/proc_common_v3_00_a/hdl/vhdl/ipif_pkg.vhd"
+vhdl proc_common_v3_00_a "../../../../../../../lib/hw/xilinx/pcores/proc_common_v3_00_a/hdl/vhdl/family_support.vhd"
+vhdl proc_common_v3_00_a "../../../../../../../lib/hw/xilinx/pcores/proc_common_v3_00_a/hdl/vhdl/counter_f.vhd"
+vhdl    axi_lite_ipif_v1_01_a "/local/scratch-1/nm525/Xilinx/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/slave_attachment.vhd"
+vhdl    axi_lite_ipif_v1_01_a "/local/scratch-1/nm525/Xilinx/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/address_decoder.vhd"
+vhdl    axi_lite_ipif_v1_01_a "/local/scratch-1/nm525/Xilinx/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/axi_lite_ipif.vhd"
