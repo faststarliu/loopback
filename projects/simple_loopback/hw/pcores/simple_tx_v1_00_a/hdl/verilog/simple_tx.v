@@ -87,7 +87,7 @@ module simple_tx
   input                                     S_AXIS_TLAST
 );
 
-  localparam NUM_RW_REGS       = 1;
+  localparam NUM_RW_REGS       = 2;
   localparam NUM_RO_REGS       = 4;
 
   // -- Signals
@@ -114,7 +114,8 @@ module simple_tx
 
    reg [2:0] state, state_next;
    reg tx_count_enable;
-   reg [31:0] tx_count;
+   reg [31:0] tx_count, cntr_gate;
+   wire [31:0] gate;
 
    localparam GATE          = 3'b001;
    localparam MODULE_HEADER = 3'b010;
@@ -134,7 +135,7 @@ module simple_tx
 
       case(state) //{
 
-        GATE: begin//{
+        GATE: if((cntr_gate== 32'b1) | gate) begin//{
                         M_AXIS_TVALID = 'b0;
                         state_next = MODULE_HEADER;
                         end//}
@@ -250,24 +251,30 @@ module simple_tx
   
   // -- Register assignments
   
-  assign rst_cntrs = rw_regs[0]; 
+  assign rst_cntrs = rw_regs[31:0]; 
+  assign gate      = rw_regs[63:32];
   
-  assign ro_regs = {M_AXIS_TDATA,M_AXIS_TREADY,tx_count,cntr};
+  assign ro_regs = {M_AXIS_TDATA,M_AXIS_TREADY,tx_count,cntr_gate,cntr};
   
   
-  // LUT hit/miss counters
   always @ (posedge S_AXI_ACLK) begin
     if (~S_AXI_ARESETN) begin
-	  cntr  <= {C_S_AXI_DATA_WIDTH{1'b0}};
+	  cntr <= {C_S_AXI_DATA_WIDTH{1'b0}};
+	  cntr_gate <= 32'b0;
 	end
 	else if (rst_cntrs) begin
-	  cntr  <= {C_S_AXI_DATA_WIDTH{1'b0}};
+	  cntr <= {C_S_AXI_DATA_WIDTH{1'b0}};
+	  cntr_gate <= 32'b0;
 	end
+        else if(cntr == 32'b1001100010010110100000000000) begin//{
+          cntr <= 32'b0;
+       	  cntr_gate <= 32'b1;
+        end//}
 	else begin
-	  cntr  <= cntr + 1;
+	  cntr <= cntr + 1'b1;
+	  cntr_gate <= 32'b0;
 	end
   end
-
 
 
 always @(posedge S_AXI_ACLK)
