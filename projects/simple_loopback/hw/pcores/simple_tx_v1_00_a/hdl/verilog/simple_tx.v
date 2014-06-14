@@ -43,8 +43,8 @@ module simple_tx
   parameter C_BASEADDR            = 32'hFFFFFFFF,
   parameter C_HIGHADDR            = 32'h00000000,
   parameter C_S_AXI_ACLK_FREQ_HZ  = 100,
-  parameter C_M_AXIS_DATA_WIDTH	  = 64,
-  parameter C_S_AXIS_DATA_WIDTH	  = 64,
+  parameter C_M_AXIS_DATA_WIDTH	  = 256,
+  parameter C_S_AXIS_DATA_WIDTH	  = 256,
   parameter C_M_AXIS_TUSER_WIDTH  = 128,
   parameter C_S_AXIS_TUSER_WIDTH  = 128
 )
@@ -144,7 +144,7 @@ module simple_tx
                          M_AXIS_TVALID = 'b1;
                          M_AXIS_TSTRB=32'hffffffff;
                          M_AXIS_TUSER = 128'h00000000000000000000000004800040;
-                         M_AXIS_TDATA = 64'haaaaaaaaaaaaaaaa;
+                         M_AXIS_TDATA = {8'h00,32'h00000700,16'h0900,32'h00000600,8'b01,32'h0,16'h0200,16'h0888,48'hbbbbbbbbbbbb,48'haaaaaaaaaaaa};
                           if(M_AXIS_TREADY) begin//{
                          state_next = SECOND;
                                 end//}
@@ -154,7 +154,7 @@ module simple_tx
                 M_AXIS_TLAST = 'b1;
                 M_AXIS_TVALID = 'b1;
                 M_AXIS_TSTRB=32'hffffffff;
-                M_AXIS_TDATA = 64'hffffffffffffffff;
+                M_AXIS_TDATA = 256'h dddddddddddddccccccccccaaaaaaaaaaaffffffeeeee;
                 M_AXIS_TUSER= 128'h0;
                 if(M_AXIS_TLAST & M_AXIS_TVALID & M_AXIS_TREADY) begin//{
                            state_next = GATE;
