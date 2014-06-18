@@ -70,6 +70,7 @@ module simple_tx
   output                                    S_AXI_BVALID,
   output                                    S_AXI_AWREADY,
   
+  output                                    SWITCH_CTRL,  
   // Master Stream Ports (interface to data path)
   output reg    [C_M_AXIS_DATA_WIDTH - 1:0]    M_AXIS_TDATA,
   output reg    [((C_M_AXIS_DATA_WIDTH / 8)) - 1:0] M_AXIS_TSTRB,
@@ -87,7 +88,7 @@ module simple_tx
   input                                     S_AXIS_TLAST
 );
 
-  localparam NUM_RW_REGS       = 2;
+  localparam NUM_RW_REGS       = 3;
   localparam NUM_RO_REGS       = 4;
 
   // -- Signals
@@ -116,6 +117,7 @@ module simple_tx
    reg tx_count_enable;
    reg [31:0] tx_count, cntr_gate;
    wire [31:0] gate;
+   wire [31:0] switch_ctrl; 
 
    localparam GATE          = 3'b001;
    localparam MODULE_HEADER = 3'b010;
@@ -123,7 +125,11 @@ module simple_tx
 
 
    assign S_AXIS_TREADY = 1'b1;
+   
+  // Assert GPIO pins
 
+  assign SWITCH_CTRL = switch_ctrl;
+  
   always @(*) begin//{
       state_next   = state;
          M_AXIS_TUSER = 'b0;
@@ -253,7 +259,8 @@ module simple_tx
   
   assign rst_cntrs = rw_regs[31:0]; 
   assign gate      = rw_regs[63:32];
-  
+  assign switch_ctrl = rw_regs[95:64];
+ 
   assign ro_regs = {M_AXIS_TDATA,M_AXIS_TREADY,tx_count,cntr_gate,cntr};
   
   
