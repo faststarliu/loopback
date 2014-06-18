@@ -48,7 +48,7 @@ NET MDIO              LOC = AL20   | IOSTANDARD = LVCMOS33;
 NET PHY_RST_N         LOC = AR20   | IOSTANDARD = LVCMOS33  | PULLUP;       # external pullup
 
 # GPIO
-NET SWITCH_CTRL       LOC = AU19  | IOSTANDARD=LVCMOS33;
+NET GPIO_SWITCH_CTRL       LOC = AU19  | IOSTANDARD=LVCMOS33;
 
 #
 # additional constraints

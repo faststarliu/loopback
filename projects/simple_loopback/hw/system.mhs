@@ -73,6 +73,7 @@
  PORT axi_emc_0_Mem_WEN_pin = axi_emc_0_Mem_WEN, DIR = O
  PORT axi_emc_0_Mem_DQ_pin = axi_emc_0_Mem_DQ, DIR = IO, VEC = [31:0]
  PORT axi_cfg_fpga_0_GPIO_IO_pin = axi_cfg_fpga_0_GPIO_IO, DIR = IO, VEC = [1:0]
+ PORT GPIO_SWITCH_CTRL = SWITCH_CTRL_CONNECTION
 
 
 BEGIN axi_interconnect
@@ -94,6 +95,7 @@ BEGIN simple_tx
  BUS_INTERFACE S_AXIS = nf10_10g_interface_0_M_AXIS
  PORT s_axi_aclk = core_clk
  PORT s_axi_aresetn = Peripheral_aresetn
+ PORT SWITCH_CTRL = SWITCH_CTRL_CONNECTION
 END
 
 BEGIN microblaze
