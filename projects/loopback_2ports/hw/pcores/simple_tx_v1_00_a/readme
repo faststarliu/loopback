@@ -1,0 +1,10 @@
+The core implements a simple traffic generator and analyzer. 
+Interfaces: 2 AXI stream interfaces for traffic generation/reception (M_AXIS/S_AXIS), 
+1 AXI4 Lite interface for interfacing with module registers and 2 custom ctrl interfaces.
+
+- Traffic generator (TG) creates Ethernet frames of 64B followed by the interpacket gap (IPG).
+Both IPG and number of packets that need to be transmitted are parametrizable.
+TG also incapsulates a time stamp from the free-running counter and frame's sequence number.
+
+- Traffic Analyzer (TA) analyzes the incoming stream, extracts time stamp and seq number info,
+and measures round trip or recovery time.  
