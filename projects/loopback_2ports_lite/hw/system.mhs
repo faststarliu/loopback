@@ -166,6 +166,27 @@ BEGIN simple_tx
  PORT ext_switch_lane1_done = unified_switch_lane1_done
 END
 
+BEGIN simple_tx
+ PARAMETER INSTANCE = simple_tx_2
+ PARAMETER HW_VER = 1.00.a
+ PARAMETER C_BASEADDR = 0x7e200000
+ PARAMETER C_HIGHADDR = 0x7e20ffff
+ PARAMETER IFNO = 0xcccc
+ PARAMETER C_INTERCONNECT_S_AXI_IS_ACLK_ASYNC = 1
+ BUS_INTERFACE S_AXI = axi_interconnect_0
+ BUS_INTERFACE M_AXIS = simple_tx_2_M_AXIS
+ BUS_INTERFACE M_AXIS0 = simple_tx_2_M_AXIS0
+ BUS_INTERFACE S_AXIS = nf10_10g_interface_2_M_AXIS
+ PORT s_axi_aclk = core_clk
+ PORT s_axi_aresetn = Peripheral_aresetn
+ PORT ext_rst_count = unified_rst
+ PORT ext_gate_ctrl = unified_gate
+ PORT ext_switch_lane0_on = unified_switch_lane0_on
+ PORT ext_switch_lane1_on = unified_switch_lane1_on
+ PORT ext_switch_lane0_done = unified_switch_lane0_done
+ PORT ext_switch_lane1_done = unified_switch_lane1_done
+END
+
 BEGIN microblaze
  PARAMETER INSTANCE = microblaze_0
  PARAMETER HW_VER = 8.00.b
@@ -348,6 +369,43 @@ BEGIN nf10_10g_interface
  PORT S_AXI_ACLK = control_clk
 END
 
+BEGIN nf10_10g_interface
+ PARAMETER INSTANCE = nf10_10g_interface_2
+ PARAMETER HW_VER = 1.20.a
+ PARAMETER C_XAUI_REVERSE = 1
+ PARAMETER C_DEFAULT_VALUE_ENABLE = 1
+ PARAMETER C_DEFAULT_SRC_PORT = 0x10
+ PARAMETER C_M_AXIS_DATA_WIDTH = 256
+ PARAMETER C_S_AXIS_DATA_WIDTH = 256
+ PARAMETER C_INTERCONNECT_S_AXI_IS_ACLK_ASYNC = 1
+ PARAMETER C_BASEADDR = 0x77a40000
+ PARAMETER C_HIGHADDR = 0x77a4ffff
+ BUS_INTERFACE S_AXI = axi_interconnect_0
+ BUS_INTERFACE M_AXIS = nf10_10g_interface_2_M_AXIS
+ BUS_INTERFACE S_AXIS = simple_tx_2_M_AXIS
+ PORT dclk = control_clk
+ PORT xaui_tx_l3_p = nf10_10g_interface_2_xaui_tx_l3_p
+ PORT xaui_tx_l3_n = nf10_10g_interface_2_xaui_tx_l3_n
+ PORT xaui_tx_l0_p = nf10_10g_interface_2_xaui_tx_l0_p
+ PORT xaui_tx_l0_n = nf10_10g_interface_2_xaui_tx_l0_n
+ PORT xaui_tx_l1_p = nf10_10g_interface_2_xaui_tx_l1_p
+ PORT xaui_tx_l2_p = nf10_10g_interface_2_xaui_tx_l2_p
+ PORT xaui_tx_l2_n = nf10_10g_interface_2_xaui_tx_l2_n
+ PORT xaui_rx_l0_p = nf10_10g_interface_2_xaui_rx_l0_p
+ PORT xaui_rx_l0_n = nf10_10g_interface_2_xaui_rx_l0_n
+ PORT xaui_rx_l1_p = nf10_10g_interface_2_xaui_rx_l1_p
+ PORT xaui_rx_l1_n = nf10_10g_interface_2_xaui_rx_l1_n
+ PORT xaui_rx_l2_p = nf10_10g_interface_2_xaui_rx_l2_p
+ PORT xaui_rx_l2_n = nf10_10g_interface_2_xaui_rx_l2_n
+ PORT xaui_rx_l3_p = nf10_10g_interface_2_xaui_rx_l3_p
+ PORT xaui_rx_l3_n = nf10_10g_interface_2_xaui_rx_l3_n
+ PORT xaui_tx_l1_n = nf10_10g_interface_2_xaui_tx_l1_n
+ PORT refclk = refclk_C
+ PORT axi_aclk = core_clk
+ PORT axi_resetn = Peripheral_aresetn
+ PORT S_AXI_ACLK = control_clk
+END
+
 # PORT S_AXI_ARESETN = Peripheral_aresetn
 BEGIN diff_input_buf
  PARAMETER INSTANCE = diff_input_buf_0
@@ -411,6 +469,7 @@ BEGIN nf10_input_arbiter
  BUS_INTERFACE M_AXIS = nf10_input_arbiter_0_M_AXIS
  BUS_INTERFACE S_AXIS_0 = simple_tx_0_M_AXIS0
  BUS_INTERFACE S_AXIS_1 = simple_tx_1_M_AXIS0
+ BUS_INTERFACE S_AXIS_2 = simple_tx_2_M_AXIS0
  BUS_INTERFACE S_AXI = axi_interconnect_0
  PORT axi_aclk = core_clk
  PORT axi_resetn = Peripheral_aresetn
