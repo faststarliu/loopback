@@ -46,7 +46,8 @@ module simple_tx
   parameter C_M_AXIS_DATA_WIDTH	  = 256,
   parameter C_S_AXIS_DATA_WIDTH	  = 256,
   parameter C_M_AXIS_TUSER_WIDTH  = 128,
-  parameter C_S_AXIS_TUSER_WIDTH  = 128
+  parameter C_S_AXIS_TUSER_WIDTH  = 128,
+  parameter IFNO 		  = 20
 )
 (
   // Slave AXI Ports
@@ -259,6 +260,13 @@ module simple_tx
  wire 						  drain_count_max;
  reg [DRAIN_COUNT_WIDTH-1:0] 			  drain_count; 
  
+ wire [31:0] ifno;
+
+ // -- To calculate the number of packets pushed to the DMA 
+ wire pkts_to_dma_signal;
+ reg [31:0] pkts_to_dma_counter;
+
+ 
  ///////////////////////////////////////////////////////////////////////////////////
  // -- AXILITE IPIF
  axi_lite_ipif_1bar #
@@ -462,7 +470,7 @@ small_async_fifo
         FIRST_WORD : begin
 		 // --- push header, pay attention to the encapsulated info as specified above --- //
                  M_AXIS_TVALID	= 'b1;
-		 M_AXIS_TUSER 	= 128'h000000000000000000000000_14_80_0040;
+		 M_AXIS_TUSER 	= 128'h000000000000000000000000_04_80_0040;
 		 M_AXIS_TSTRB	= {32{1'b1}};
                //  M_AXIS_TDATA = {8'h00, 32'h00000700, 16'h0900, 32'h00000600, 8'h02, 32'h14, 16'h0204, 16'h0008, 48'hbbbbbbbbbbbb, 48'haaaaaaaaaaaa};
 		 M_AXIS_TDATA 	= {8'h00, 32'h00000700, 16'h0900, 32'h00000600, 8'b01, 32'h0, 16'h0200, 16'h0888, 48'hbbbbbbbbbbbb, 48'haaaaaaaaaaaa};
@@ -648,13 +656,13 @@ small_async_fifo
 				if (frame_info_up) begin
 					stat_fsm_state  <= STAT_FNORM_FILL;
 					tstmp_fwe 	<= ~tstmp_ffull;
-					tstmp_fin 	<= {48'hcafe_cafe_cafe, tstamp_data_start, tstamp_data_stop, arr_pck_seq_num, exp_pck_seq_num, 16'hcafe};					
+					tstmp_fin 	<= {ifno[15:0],32'hcafe_cafe, tstamp_data_start, tstamp_data_stop, arr_pck_seq_num, exp_pck_seq_num, 16'hcafe};					
 					
 				// switch tstamp ln0 or ln1 is asserted
 				end else if (switch_info_up) begin
 					stat_fsm_state  <= STAT_FNORM_FILL;
 					tstmp_fwe 	<= ~tstmp_ffull;
-					tstmp_fin 	<= {16'hbeef, tstamp_sw_ln0_start, tstamp_sw_ln0_stop, tstamp_sw_ln1_start, tstamp_sw_ln1_stop, 16'hbeef};				
+					tstmp_fin 	<= {ifno[15:0], tstamp_sw_ln0_start, tstamp_sw_ln0_stop, tstamp_sw_ln1_start, tstamp_sw_ln1_stop, 16'hbeef};				
 							
 				// stay in this state
 				end else begin
@@ -685,7 +693,9 @@ small_async_fifo
   ///// Forward data to the DMA. FSM to drain the queue,
   ///// depending on the occupancy. 
   ///// send a fixed packet of size 800B.	
-  // comb    	  
+  // comb    	
+
+ 
   always @(*) begin : drain_fifo_comb_3l
       	drain_fsm_state_next   	= drain_fsm_state;
          M_AXIS0_TUSER 		= 'b0;
@@ -715,7 +725,7 @@ small_async_fifo
 		 M_AXIS0_TUSER 	= 128'h00000000_00000000_00000000_02_80_0320;
 		 M_AXIS0_TSTRB	= {32{1'b1}};
 //               M_AXIS0_TDATA 	= {8'h00, 32'h00000700, 16'h0900, 32'h00000600, 8'h02, 32'h14, 16'h0204, 16'h0008, 48'hcccccccccccc, 48'hdddddddddddd};
-		 M_AXIS0_TDATA 	= {8'h00, 32'h00000700, 16'h0900, 32'h00000600, 8'h02, 16'h0000 , 16'h2003, 16'h0045, 16'h0008, 48'hcccccccccccc, 48'hdddddddddddd};	
+		 M_AXIS0_TDATA 	= {8'h00, 32'h00000700, 16'h0900, 32'h00000600, 8'b01, 32'h0, 16'h0200, 16'h0008, 48'hcccccccccccc, 48'hdddddddddddd};	
         end	
         FIFO_TX_PAYLOAD: begin
 		M_AXIS0_TVALID 	= 1'b1;
@@ -781,7 +791,20 @@ always @(posedge S_AXI_ACLK) begin : free_count_seq_l
    else 		 	free_count <= free_count_next[63:0];
 end
 
+///// Used to calculate the number of packets pushed to the DMA
+
+assign pkts_to_dma_signal = M_AXIS0_TVALID & M_AXIS0_TLAST & M_AXIS0_TREADY;
+ 
+// This counter currenly wraps around after reaching the max value -- nm525
+ 
+ always @(posedge S_AXI_ACLK) begin 
+   if (rst_sync_ip)             pkts_to_dma_counter <= 'b0;
+   else                         pkts_to_dma_counter <= (pkts_to_dma_signal) ? pkts_to_dma_counter + 1'b1 : pkts_to_dma_counter;
+ end
+
+
+assign ifno = IFNO; 
 // RO register assignment
-assign ro_regs = {tstamp_data_start, tstamp_data_stop, arr_pck_seq_num, exp_pck_seq_num, tstamp_sw_ln0_start, tstamp_sw_ln0_stop, tstamp_sw_ln1_start, tstamp_sw_ln1_stop};
+assign ro_regs = {tstamp_data_start, tstamp_data_stop, arr_pck_seq_num, exp_pck_seq_num, tstamp_sw_ln0_start, tstamp_sw_ln0_stop, tstamp_sw_ln1_start, tstamp_sw_ln1_stop,pkts_to_dma_counter};
   
 endmodule
