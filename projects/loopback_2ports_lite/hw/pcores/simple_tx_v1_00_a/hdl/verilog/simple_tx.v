@@ -206,7 +206,9 @@ module simple_tx
   reg [RX_FSM_WIDTH-1 :0 ]  			  rx_fsm_state;	
   reg [31:0] 					  rx_count;
   reg [31:0] 					  arr_pck_seq_num, exp_pck_seq_num;
-  reg 						  rx_sec_word_q;
+  reg 						  rx_sec_word_q, rx_sec_word_q_d;
+  wire 						  rx_sec_word_pulse_q;
+
   
   reg 						  ext_switch_ln0_on_q, ext_switch_ln1_on_q;
   reg 						  ext_switch_ln0_done_q, ext_switch_ln1_done_q;
@@ -566,6 +568,7 @@ small_async_fifo
 		arr_pck_seq_num		<= 'b0;
 		exp_pck_seq_num 	<= 'b0;
 		rx_sec_word_q		<= 1'b0; 
+		rx_sec_word_q_d		<= 1'b0;
 
 	end else begin
 		arr_pck_seq_num	 	<= arr_pck_seq_num;
@@ -574,6 +577,7 @@ small_async_fifo
 		tstamp_data_stop	<= tstamp_data_stop;	
 		rx_count		<= rx_count;
 		rx_sec_word_q		<= 1'b0;
+		rx_sec_word_q_d		<= rx_sec_word_q;
 
 		// FSM updates -- last statement wins
 		case (rx_fsm_state) 
@@ -605,6 +609,9 @@ small_async_fifo
 	     endcase			
 	end	
  end
+
+ // generate the receive tstamp pulse.	
+ assign  rx_sec_word_pulse_q = (rx_sec_word_q ^ rx_sec_word_q_d) & rx_sec_word_q;
 
  // record when switch is reconfigured, latch ctrls
  always @ (posedge S_AXI_ACLK) begin : rx_switch_l
@@ -642,7 +649,7 @@ small_async_fifo
  // to the DMA. But first fill in the DMA-related fifo with correct info.
  
  // data timestamps 
- assign frame_info_up = rx_sec_word_q;
+ assign frame_info_up = rx_sec_word_pulse_q;
 
  // switching events 
  assign switch_info_up = (ext_switch_ln0_on_q | ext_switch_ln1_on_q | ext_switch_ln0_done_q | ext_switch_ln1_done_q);
@@ -806,7 +813,6 @@ assign pkts_to_dma_signal = M_AXIS0_TVALID & M_AXIS0_TLAST & M_AXIS0_TREADY;
    if (rst_sync_ip)             pkts_to_dma_counter <= 'b0;
    else                         pkts_to_dma_counter <= (pkts_to_dma_signal) ? pkts_to_dma_counter + 1'b1 : pkts_to_dma_counter;
  end
-
 
 assign ifno = IFNO; 
 // RO register assignment
