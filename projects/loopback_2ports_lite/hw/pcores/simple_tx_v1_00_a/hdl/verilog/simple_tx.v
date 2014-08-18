@@ -470,7 +470,7 @@ small_async_fifo
         FIRST_WORD : begin
 		 // --- push header, pay attention to the encapsulated info as specified above --- //
                  M_AXIS_TVALID	= 'b1;
-		 M_AXIS_TUSER 	= 128'h000000000000000000000000_04_80_0040;
+		 M_AXIS_TUSER 	= 128'h000000000000000000000000_05_01_0040;
 		 M_AXIS_TSTRB	= {32{1'b1}};
                //  M_AXIS_TDATA = {8'h00, 32'h00000700, 16'h0900, 32'h00000600, 8'h02, 32'h14, 16'h0204, 16'h0008, 48'hbbbbbbbbbbbb, 48'haaaaaaaaaaaa};
 		 M_AXIS_TDATA 	= {8'h00, 32'h00000700, 16'h0900, 32'h00000600, 8'b01, 32'h0, 16'h0200, 16'h0888, 48'hbbbbbbbbbbbb, 48'haaaaaaaaaaaa};
