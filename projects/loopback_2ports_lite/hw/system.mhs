@@ -38,6 +38,22 @@
  PORT nf10_10g_interface_1_xaui_rx_l3_p_pin = nf10_10g_interface_1_xaui_rx_l3_p, DIR = I
  PORT nf10_10g_interface_1_xaui_rx_l3_n_pin = nf10_10g_interface_1_xaui_rx_l3_n, DIR = I
  PORT nf10_10g_interface_1_xaui_tx_l2_p_pin = nf10_10g_interface_1_xaui_tx_l2_p, DIR = O
+ PORT nf10_10g_interface_2_xaui_tx_l3_p_pin = nf10_10g_interface_2_xaui_tx_l3_p, DIR = O
+ PORT nf10_10g_interface_2_xaui_tx_l3_n_pin = nf10_10g_interface_2_xaui_tx_l3_n, DIR = O
+ PORT nf10_10g_interface_2_xaui_tx_l0_p_pin = nf10_10g_interface_2_xaui_tx_l0_p, DIR = O
+ PORT nf10_10g_interface_2_xaui_tx_l0_n_pin = nf10_10g_interface_2_xaui_tx_l0_n, DIR = O
+ PORT nf10_10g_interface_2_xaui_tx_l1_p_pin = nf10_10g_interface_2_xaui_tx_l1_p, DIR = O
+ PORT nf10_10g_interface_2_xaui_tx_l2_p_pin = nf10_10g_interface_2_xaui_tx_l2_p, DIR = O
+ PORT nf10_10g_interface_2_xaui_tx_l2_n_pin = nf10_10g_interface_2_xaui_tx_l2_n, DIR = O
+ PORT nf10_10g_interface_2_xaui_rx_l0_p_pin = nf10_10g_interface_2_xaui_rx_l0_p, DIR = I
+ PORT nf10_10g_interface_2_xaui_rx_l0_n_pin = nf10_10g_interface_2_xaui_rx_l0_n, DIR = I
+ PORT nf10_10g_interface_2_xaui_rx_l1_p_pin = nf10_10g_interface_2_xaui_rx_l1_p, DIR = I
+ PORT nf10_10g_interface_2_xaui_rx_l1_n_pin = nf10_10g_interface_2_xaui_rx_l1_n, DIR = I
+ PORT nf10_10g_interface_2_xaui_rx_l2_p_pin = nf10_10g_interface_2_xaui_rx_l2_p, DIR = I
+ PORT nf10_10g_interface_2_xaui_rx_l2_n_pin = nf10_10g_interface_2_xaui_rx_l2_n, DIR = I
+ PORT nf10_10g_interface_2_xaui_rx_l3_p_pin = nf10_10g_interface_2_xaui_rx_l3_p, DIR = I
+ PORT nf10_10g_interface_2_xaui_rx_l3_n_pin = nf10_10g_interface_2_xaui_rx_l3_n, DIR = I
+ PORT nf10_10g_interface_2_xaui_tx_l1_n_pin = nf10_10g_interface_2_xaui_tx_l1_n, DIR = O 
  PORT refclk_A_p = DIFF_INPUT_BUF_0_DIFF_INPUT_P, DIR = I
  PORT refclk_A_n = DIFF_INPUT_BUF_0_DIFF_INPUT_N, DIR = I
  PORT refclk_B_p = DIFF_INPUT_BUF_1_DIFF_INPUT_P, DIR = I
@@ -428,6 +444,7 @@ BEGIN diff_input_buf
  PARAMETER HW_VER = 1.00.a
  PORT DIFF_INPUT_P = DIFF_INPUT_BUF_2_DIFF_INPUT_P
  PORT DIFF_INPUT_N = DIFF_INPUT_BUF_2_DIFF_INPUT_N
+ PORT SINGLE_ENDED_INPUT = refclk_C
 END
 
 BEGIN diff_input_buf
