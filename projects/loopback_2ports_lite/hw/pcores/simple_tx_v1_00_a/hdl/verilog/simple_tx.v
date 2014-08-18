@@ -206,6 +206,7 @@ module simple_tx
   reg [RX_FSM_WIDTH-1 :0 ]  			  rx_fsm_state;	
   reg [31:0] 					  rx_count;
   reg [31:0] 					  arr_pck_seq_num, exp_pck_seq_num;
+  reg 						  rx_sec_word_q;
   
   reg 						  ext_switch_ln0_on_q, ext_switch_ln1_on_q;
   reg 						  ext_switch_ln0_done_q, ext_switch_ln1_done_q;
@@ -559,18 +560,20 @@ small_async_fifo
 	if (rst_sync_ip) begin
 		rx_fsm_state 		<= WAIT_ARRIVAL;	
 		// frame stats	
-		tstamp_data_start		<= 'b0;
-		tstamp_data_stop		<= 'b0;
+		tstamp_data_start	<= 'b0;
+		tstamp_data_stop	<= 'b0;
 		rx_count 		<= 'b0;
 		arr_pck_seq_num		<= 'b0;
 		exp_pck_seq_num 	<= 'b0;
+		rx_sec_word_q		<= 1'b0; 
 
 	end else begin
 		arr_pck_seq_num	 	<= arr_pck_seq_num;
 		exp_pck_seq_num 	<= exp_pck_seq_num;
-		tstamp_data_start		<= tstamp_data_start;
-		tstamp_data_stop		<= tstamp_data_stop;	
+		tstamp_data_start	<= tstamp_data_start;
+		tstamp_data_stop	<= tstamp_data_stop;	
 		rx_count		<= rx_count;
+		rx_sec_word_q		<= 1'b0;
 
 		// FSM updates -- last statement wins
 		case (rx_fsm_state) 
@@ -584,8 +587,9 @@ small_async_fifo
 					rx_count 		<= rx_count + 1'b1;			
 					arr_pck_seq_num 	<= S_AXIS_TDATA[47:16];
 			        	exp_pck_seq_num 	<= rx_count;
-					tstamp_data_start 		<= S_AXIS_TDATA[111:48];
-					tstamp_data_stop  		<= free_count;
+					tstamp_data_start 	<= S_AXIS_TDATA[111:48];
+					tstamp_data_stop  	<= free_count;
+					rx_sec_word_q		<= 1'b1;
 	
 				end else begin
 					rx_fsm_state 	<= HEAD_DETECT;
@@ -638,7 +642,8 @@ small_async_fifo
  // to the DMA. But first fill in the DMA-related fifo with correct info.
  
  // data timestamps 
- assign frame_info_up = (rx_fsm_state == SECOND_DETECT);
+ assign frame_info_up = rx_sec_word_q;
+
  // switching events 
  assign switch_info_up = (ext_switch_ln0_on_q | ext_switch_ln1_on_q | ext_switch_ln0_done_q | ext_switch_ln1_done_q);
 
