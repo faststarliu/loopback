@@ -1,0 +1,5 @@
+./rdaxi 0x7d200000
+./rdaxi 0x7d200004
+./rdaxi 0x7d200008
+./rdaxi 0x7d20000C
+
