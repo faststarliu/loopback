@@ -1,0 +1,10 @@
+Scripts to generate plots using gnuplot
+
+1. get the log files with *.log ext and convert to *.dat using log2dat.sh. 
+2. edit the gnuplot setting through the run_{bytesize} file
+3. Run the Make file 
+	-- make dat : to generate dat files
+	-- make run : to run the gnuplot scripts and generate .ps
+	-- make pdf : converts ps to pdf
+	or use 
+	-- make all : to do all the above
