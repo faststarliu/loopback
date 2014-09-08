@@ -1,0 +1,58 @@
+----------------------------------------------------------------------
+FPGA SmartXplorer (tm) Version 13.4
+
+----------------------------------------------------------------------
+ Strategy : MapRunTime
+----------------------------------------------------------------------
+ Run index                           : run1
+ Map options                         : -ol high -w 
+ Par options                         : -ol high 
+ Status                              : Failed map
+ Current Best (Lowest) Timing Score  : None
+ Current Best Strategy               : None
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+ Strategy : MapLogicOpt
+----------------------------------------------------------------------
+ Run index                           : run2
+ Map options                         : -ol high -xe n -logic_opt on -t 2 -w 
+ Par options                         : -ol high -xe n 
+ Number of Luts                      : 43,348 (28%)
+ Number of Slice Registers           : 62,352 (41%)
+ Status                              : Done
+ Achieved Timing Score               : 1364491
+ Worst Case Slack                : -1.847ns
+
+ Current Best (Lowest) Timing Score  : 1364491
+ Current Best Strategy               : MapLogicOpt
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+ Strategy : MapGlobOptIOReg
+----------------------------------------------------------------------
+ Run index                           : run3
+ Map options                         : -ol high -global_opt speed -pr b -w 
+ Par options                         : -ol high -xe n 
+ Number of Luts                      : 38,476 (25%)
+ Number of Slice Registers           : 59,376 (39%)
+ Status                              : Done
+ Achieved Timing Score               : 0
+ Worst Case Slack                : 0.090ns
+
+ Current Best (Lowest) Timing Score  : 0
+ Current Best Strategy               : MapGlobOptIOReg
+----------------------------------------------------------------------
+######################################################################
+ BestStrategy : MapGlobOptIOReg
+######################################################################
+ Run index                           : run3
+ Map options                         : -ol high -global_opt speed -pr b -w 
+ Par options                         : -ol high -xe n 
+ Number of Luts                      : 38,476 (25%)
+ Number of Slice Registers           : 59,376 (39%)
+ Achieved Timing Score               : 0
+ Worst Case Slack                : 0.090ns
+
+######################################################################
+
+Total Real Time:4802.4(secs)
+SmartXplorer Done

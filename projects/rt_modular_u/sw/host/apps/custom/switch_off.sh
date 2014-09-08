@@ -1,0 +1,5 @@
+./wraxi 0x7d200008 0x2
+./rdaxi 0x7d200008
+./rdaxi 0x7d200008
+./rdaxi 0x7d200008
+./rdaxi 0x7d200008

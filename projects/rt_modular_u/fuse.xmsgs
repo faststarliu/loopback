@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="warning" file="HDLCompiler" num="693" delta="unknown" >"hw/pcores/nf10_input_arbiter_ifs_v1_10_a/hdl/verilog/input_arbiter.v" Line 120: Parameter declaration becomes local in <arg fmt="%s" index="1">input_arbiter</arg> with formal parameter declaration list
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="693" delta="unknown" >"hw/pcores/nf10_input_arbiter_ifs_v1_10_a/hdl/verilog/input_arbiter.v" Line 122: Parameter declaration becomes local in <arg fmt="%s" index="1">input_arbiter</arg> with formal parameter declaration list
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="693" delta="unknown" >"hw/pcores/nf10_input_arbiter_ifs_v1_10_a/hdl/verilog/input_arbiter.v" Line 123: Parameter declaration becomes local in <arg fmt="%s" index="1">input_arbiter</arg> with formal parameter declaration list
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="693" delta="unknown" >"hw/pcores/nf10_input_arbiter_ifs_v1_10_a/hdl/verilog/input_arbiter.v" Line 124: Parameter declaration becomes local in <arg fmt="%s" index="1">input_arbiter</arg> with formal parameter declaration list
+</msg>
+
+</messages>
+
