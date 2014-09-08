@@ -1,0 +1,208 @@
+----------------------------------------------------------------------
+FPGA SmartXplorer (tm) Version 13.4
+
+----------------------------------------------------------------------
+ Strategy : MapRunTime
+----------------------------------------------------------------------
+ Run index                           : run1
+ Map options                         : -ol high -w 
+ Par options                         : -ol high 
+ Number of Luts                      : 43,902 (29%)
+ Number of Slice Registers           : 63,447 (42%)
+ Status                              : Done
+ Achieved Timing Score               : 972768
+ Worst Case Slack                : -0.673ns
+
+ Current Best (Lowest) Timing Score  : 972768
+ Current Best Strategy               : MapRunTime
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+ Strategy : MapLogicOpt
+----------------------------------------------------------------------
+ Run index                           : run2
+ Map options                         : -ol high -xe n -logic_opt on -t 2 -w 
+ Par options                         : -ol high -xe n 
+ Number of Luts                      : 43,908 (29%)
+ Number of Slice Registers           : 63,447 (42%)
+ Status                              : Done
+ Achieved Timing Score               : 1032001
+ Worst Case Slack                : -2.881ns
+
+ Current Best (Lowest) Timing Score  : 972768
+ Current Best Strategy               : MapRunTime
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+ Strategy : MapGlobOptIOReg
+----------------------------------------------------------------------
+ Run index                           : run3
+ Map options                         : -ol high -global_opt speed -pr b -w 
+ Par options                         : -ol high -xe n 
+ Number of Luts                      : 38,688 (25%)
+ Number of Slice Registers           : 59,895 (39%)
+ Status                              : Done
+ Achieved Timing Score               : 2574778
+ Worst Case Slack                : -2.988ns
+
+ Current Best (Lowest) Timing Score  : 972768
+ Current Best Strategy               : MapRunTime
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+ Strategy : MapRegDup
+----------------------------------------------------------------------
+ Run index                           : run4
+ Map options                         : -ol high -xe n -register_duplication on -w 
+ Par options                         : -ol high -xe n 
+ Number of Luts                      : 43,931 (29%)
+ Number of Slice Registers           : 63,448 (42%)
+ Status                              : Done
+ Achieved Timing Score               : 629000
+ Worst Case Slack                : -0.763ns
+
+ Current Best (Lowest) Timing Score  : 629000
+ Current Best Strategy               : MapRegDup
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+ Strategy : MapExtraEffortIOReg
+----------------------------------------------------------------------
+ Run index                           : run5
+ Map options                         : -ol high -xe n -pr b -t 7 -w 
+ Par options                         : -ol high -xe n 
+ Status                              : Failed map
+ Current Best (Lowest) Timing Score  : 629000
+ Current Best Strategy               : MapRegDup
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+ Strategy : MapLogOptRegDup
+----------------------------------------------------------------------
+ Run index                           : run6
+ Map options                         : -ol high -xe n -logic_opt on -register_duplication on -t 2 -w 
+ Par options                         : -ol high -xe n 
+ Number of Luts                      : 43,951 (29%)
+ Number of Slice Registers           : 63,447 (42%)
+ Status                              : Done
+ Achieved Timing Score               : 1029928
+ Worst Case Slack                : -1.657ns
+
+ Current Best (Lowest) Timing Score  : 629000
+ Current Best Strategy               : MapRegDup
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+ Strategy : MapExtraEffort2
+----------------------------------------------------------------------
+ Run index                           : run7
+ Map options                         : -ol high -xe n -t 3 -w 
+ Par options                         : -ol high 
+ Number of Luts                      : 43,910 (29%)
+ Number of Slice Registers           : 63,447 (42%)
+ Status                              : Done
+ Achieved Timing Score               : 1562808
+ Worst Case Slack                : -1.610ns
+
+ Current Best (Lowest) Timing Score  : 629000
+ Current Best Strategy               : MapRegDup
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+ Strategy : MapRegDupCT2
+----------------------------------------------------------------------
+ Run index                           : run8
+ Map options                         : -ol high -xe n -register_duplication on -w -t 2
+ Par options                         : -ol high -xe n 
+ Number of Luts                      : 43,951 (29%)
+ Number of Slice Registers           : 63,447 (42%)
+ Status                              : Done
+ Achieved Timing Score               : 1029928
+ Worst Case Slack                : -1.657ns
+
+ Current Best (Lowest) Timing Score  : 629000
+ Current Best Strategy               : MapRegDup
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+ Strategy : MapRegDupCT3
+----------------------------------------------------------------------
+ Run index                           : run9
+ Map options                         : -ol high -xe n -register_duplication on -w -t 3
+ Par options                         : -ol high -xe n 
+ Number of Luts                      : 43,935 (29%)
+ Number of Slice Registers           : 63,447 (42%)
+ Status                              : Done
+ Achieved Timing Score               : 1507692
+ Worst Case Slack                : -1.601ns
+
+ Current Best (Lowest) Timing Score  : 629000
+ Current Best Strategy               : MapRegDup
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+ Strategy : MapRegDupCT4
+----------------------------------------------------------------------
+ Run index                           : run10
+ Map options                         : -ol high -xe n -register_duplication on -w -t 4
+ Par options                         : -ol high -xe n 
+ Number of Luts                      : 43,976 (29%)
+ Number of Slice Registers           : 63,481 (42%)
+ Status                              : Done
+ Achieved Timing Score               : 1587524
+ Worst Case Slack                : -1.425ns
+
+ Current Best (Lowest) Timing Score  : 629000
+ Current Best Strategy               : MapRegDup
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+ Strategy : MapRegDupCT5
+----------------------------------------------------------------------
+ Run index                           : run11
+ Map options                         : -ol high -xe n -register_duplication on -w -t 5
+ Par options                         : -ol high -xe n 
+ Number of Luts                      : 43,927 (29%)
+ Number of Slice Registers           : 63,447 (42%)
+ Status                              : Done
+ Achieved Timing Score               : 1510
+ Worst Case Slack                : -0.386ns
+
+ Current Best (Lowest) Timing Score  : 1510
+ Current Best Strategy               : MapRegDupCT5
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+ Strategy : MapRegDupCT6
+----------------------------------------------------------------------
+ Run index                           : run12
+ Map options                         : -ol high -xe n -register_duplication on -w -t 6
+ Par options                         : -ol high -xe n 
+ Number of Luts                      : 44,060 (29%)
+ Number of Slice Registers           : 63,538 (42%)
+ Status                              : Done
+ Achieved Timing Score               : 2209217
+ Worst Case Slack                : -2.101ns
+
+ Current Best (Lowest) Timing Score  : 1510
+ Current Best Strategy               : MapRegDupCT5
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+ Strategy : MapRegDupCT7
+----------------------------------------------------------------------
+ Run index                           : run13
+ Map options                         : -ol high -xe n -register_duplication on -w -t 7
+ Par options                         : -ol high -xe n 
+ Number of Luts                      : 43,962 (29%)
+ Number of Slice Registers           : 63,448 (42%)
+ Status                              : Done
+ Achieved Timing Score               : 0
+ Worst Case Slack                : 0.034ns
+
+ Current Best (Lowest) Timing Score  : 0
+ Current Best Strategy               : MapRegDupCT7
+----------------------------------------------------------------------
+######################################################################
+ BestStrategy : MapRegDupCT7
+######################################################################
+ Run index                           : run13
+ Map options                         : -ol high -xe n -register_duplication on -w -t 7
+ Par options                         : -ol high -xe n 
+ Number of Luts                      : 43,962 (29%)
+ Number of Slice Registers           : 63,448 (42%)
+ Achieved Timing Score               : 0
+ Worst Case Slack                : 0.034ns
+
+######################################################################
+
+Total Real Time:25588.0(secs)
+SmartXplorer Done

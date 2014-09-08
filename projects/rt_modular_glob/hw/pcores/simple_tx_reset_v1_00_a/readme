@@ -1,0 +1,2 @@
+The core provides a synchronous reset and gate signals to simple_tx transmision module.
+The signals are asserted through the AXI-based register infrastructure.

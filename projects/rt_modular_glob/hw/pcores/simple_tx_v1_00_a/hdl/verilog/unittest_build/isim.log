@@ -1,0 +1,22 @@
+ISim log file
+Running: ./simple_tx_tb.exe -gui -tclbatch ../simple_tx_tb.tcl 
+ISim O.87xd (signature 0x8ddf5b5d)
+----------------------------------------------------------------------
+INFO:Security:67 - XILINXD_LICENSE_FILE is set to '/opt/Xilinx/Vivado/2014.1/data/ip/core_licenses:/opt/Xilinx/Vivado/2013.4/data/ip/core_licenses:/opt/Xilinx/Vivado/2013.3/data/ip/core_licenses:/root/.Xilinx' in /root/.flexlmrc.
+WARNING:Security:42 - Your software subscription period has lapsed. Your current version of Xilinx tools will continue to function, but you no longer qualify for Xilinx software updates or new releases.
+
+
+----------------------------------------------------------------------
+This is a Full version of ISim.
+WARNING: File "/root/Documents/ya240/V5NF10/projects/rt_phyrecovery/smartxplorer/loopback/projects/rt_modular_glob/hw/pcores/simple_tx_v1_00_a/hdl/verilog/simple_tx.v" Line 159.  For instance dut/ipif_regs_inst/, width 129 of formal port rw_regs is not equal to width 128 of actual signal rw_regs.
+WARNING: File "/root/Documents/ya240/V5NF10/projects/rt_phyrecovery/smartxplorer/loopback/projects/rt_modular_glob/hw/pcores/simple_tx_v1_00_a/hdl/verilog/simple_tx.v" Line 168.  For instance dut/ipif_regs_inst/, width 481 of formal port ro_regs is not equal to width 480 of actual signal ro_regs.
+Time resolution is 1 ps
+# run 2 us
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# quit
+# restart
+# run 20 us
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# exit 0
